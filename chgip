@@ -1,0 +1,4 @@
+IPFIGLET12=$(for listv1 in `docker ps | grep figlet12 | awk '{print $1}'`; do docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv1; done)
+IPFIGLET13=$(for listv2 in `docker ps | grep figlet13 | awk '{print $1}'`; do docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv2; done)
+sed -i "s/172.17.0.56/$IPFIGLET12/g" haproxy.cfg
+sed -i "s/172.17.0.57/$IPFIGLET13/g" haproxy.cfg
