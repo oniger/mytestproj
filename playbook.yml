@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+   - name: install haproxy
+     yum:
+      name: haproxy
+      state: present
+
+   - name: Copy HAProxy config
+     template:
+      src=/root/myansi/templates/haproxy.cfg
+      dest=/etc/haproxy/haproxy.cfg
+      backup=yes
+   
+   - name: Executing a Command Using Shell Module
+     shell: /var/tmp/chgip
