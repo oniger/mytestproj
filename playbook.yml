@@ -15,3 +15,5 @@
      service:
       name: haproxy
       state: started
+   - name: Executing a Command Using Shell Module 
+     shell: ls -lrt > /tmp/sample
