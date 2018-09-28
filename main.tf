@@ -1,12 +1,10 @@
-main.tf
-
 provider "aws" {
 
-    access_key = "${var.aws_access_key}"
+    access_key = "xxxxx"
 
-    secret_key = "${var.aws_secret_key}"
+    secret_key = "xxxxx"
 
-    region = "${var.aws_region}"
+    region = "eu-central-1"
 
 }
 
@@ -22,6 +20,7 @@ resource "aws_instance" "app" {
               sudo yum -y install docker.x86_64
               EOF
 }
+
 resource "aws_security_group" "web" {
 
     name = "web"
