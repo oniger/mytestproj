@@ -10,29 +10,23 @@ provider "aws" {
 
 }
 
- 
+resource "aws_instance" "app" {
+  instance_type     = "t2.micro"
+  availability_zone = "eu-central-1b"
+  ami               = "ami-0f5dbc86dd9cbf7a8"
 
-resource "aws_instance" "hello_world" {
-
-    ami = "ami-e3fdd999"  # CentOS Linux 6 for us-east-1
-
-    instance_type = "t2.micro"
-
-    vpc_security_group_ids = ["${aws_security_group.web.id}"]
-
-    key_name = "${aws_key_pair.hello_world.id}"
-
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo yum -y install haproxy.x86_64
+              sudo yum -y install ansible.x86_64
+              sudo yum -y install docker.x86_64
+              EOF
 }
-
- 
-
 resource "aws_security_group" "web" {
 
     name = "web"
 
     description = "Allow HTTP and SSH connections."
-
- 
 
     ingress {
 
@@ -46,8 +40,6 @@ resource "aws_security_group" "web" {
 
     }
 
- 
-
     ingress {
 
         from_port = 80
@@ -59,7 +51,6 @@ resource "aws_security_group" "web" {
         cidr_blocks = ["0.0.0.0/0"]
 
     }
-    
 
     ingress {
 
@@ -70,61 +61,6 @@ resource "aws_security_group" "web" {
         protocol = "tcp"
 
         cidr_blocks = ["0.0.0.0/0"]
-
     }
-
- 
-
-    egress {
-
-        from_port = 0
-
-        to_port = 0
-
-        protocol = "-1"
-
-        cidr_blocks = ["0.0.0.0/0"]
-
-    }
-
 }
 
- 
-
-resource "aws_key_pair" "hello_world" {
-
-    key_name = "hello_world"
-
-    public_key = "${file(var.public_key_path)}"
-
-}
-
- 
-
- 
-
-variables.tf
-
-# These variables come from the terraform.tfvars file
-
-variable "aws_access_key" {}
-
-variable "aws_secret_key" {}
-
- 
-
-variable "aws_region" {
-
-    description = "AWS region in which to launch the servers."
-
-    default = "us-east-1"
-
-}
-
- 
-
-variable "public_key_path" {
-
-    default = "~/.ssh/id_rsa.pub"
-
-}
