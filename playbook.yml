@@ -12,4 +12,4 @@
       backup=yes
    
    - name: Executing a Command Using Shell Module
-     shell: sudo /home/testme/chgip
+     shell: /home/testme/chgip
