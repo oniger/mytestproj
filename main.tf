@@ -25,7 +25,7 @@ resource "aws_instance" "app" {
               sudo chmod u+x /home/testme/chgip
               sudo docker build -t figlet12 /home/testme/.
               sudo docker build -t figlet13 /home/testme/.
-              sudo ansible-playbook -i /home/testme/hosts -k /home/testme/playbook.yml 
+              sudo ansible-playbook /home/testme/playbook.yml 
               EOF
 }
 resource "aws_security_group" "web" {
