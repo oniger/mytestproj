@@ -22,3 +22,22 @@ This executes the template and spins up the host based on the template main.tf
 
 #terraform apply
 
+Login to the EC2 host.
+
+#ssh -i "xxxx.pem" ec2-user@xxx.eu-central-1.compute.amazonaws.com
+
+To check for running docker containers
+
+#sudo docker ps
+
+To check if the site is up run 
+
+#curl -s localhost
+
+The haproxy service will proxy connection to the two containers that run the hello world app in port 8080 in load balancing fashion.
+
+To check the running processes for docker and haproxy, run
+
+#ps -ef
+
+
