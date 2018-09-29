@@ -7,9 +7,9 @@
 
    - name: Copy HAProxy config
      template:
-      src=/root/myansi/templates/haproxy.cfg
+      src=/home/testme/haproxy.cfg
       dest=/etc/haproxy/haproxy.cfg
       backup=yes
    
    - name: Executing a Command Using Shell Module
-     shell: /var/tmp/chgip
+     shell: sudo /home/testme/chgip
