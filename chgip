@@ -1,16 +1,16 @@
-# This assumes the following files are present on /root/myregdocker3/
+# This assumes the following files are present on /home/testme
 #Dockerfile
 #glibc-2.21-r2.apk
 #helloworld.war
 #jdk-8u181-linux-x64.tar.gz
 #Run the containers
-cd /root/myregdocker3/
-docker run -d -P -it figlet13
+sudo cd /home/testme/
+sudo docker run -d -P -it figlet13
 sleep 10
-docker run -d -P -it figlet12
+sudo docker run -d -P -it figlet12
 sleep 10
-IPFIGLET12=$(for listv1 in `docker ps | grep figlet12 | awk '{print $1}'`; do docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv1; done)
-IPFIGLET13=$(for listv2 in `docker ps | grep figlet13 | awk '{print $1}'`; do docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv2; done)
-sed -i "s/172.17.0.56/$IPFIGLET12/g" /etc/haproxy/haproxy.cfg
-sed -i "s/172.17.0.57/$IPFIGLET13/g" /etc/haproxy/haproxy.cfg
-service haproxy start
+IPFIGLET12=$(for listv1 in `sudo docker ps | grep figlet12 | awk '{print $1}'`; do sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv1; done)
+IPFIGLET13=$(for listv2 in `sudo docker ps | grep figlet13 | awk '{print $1}'`; do sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv2; done)
+sudo sed -i "s/172.17.0.56/$IPFIGLET12/g" /etc/haproxy/haproxy.cfg
+sudo sed -i "s/172.17.0.57/$IPFIGLET13/g" /etc/haproxy/haproxy.cfg
+sudo service haproxy start
