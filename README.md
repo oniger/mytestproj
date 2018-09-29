@@ -8,7 +8,7 @@ helloworld.war -- spring boot hello world
 
 jdk-8u181-linux-x64.tar.gz - Oracle JDK 8
 
-Under /root/myansi directory, run the terraform commands. Ensure the main.tf file is present.
+Under /root/myansi directory, run the terraform commands. Ensure the main.tf file is present. Please note that main.tf needs to be edited to include the correct aws access key and secret access key and the key pair name from AWS account.
 
 This initializes terraform 
 
