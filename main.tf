@@ -10,17 +10,16 @@ provider "aws" {
 
 resource "aws_instance" "app" {
   instance_type     = "t2.micro"
+  key_name          = "xxxxx"
+  vpc_security_group_ids = ["sg-0bb981fc3f0bfba4c"]
   availability_zone = "eu-central-1b"
   ami               = "ami-0f5dbc86dd9cbf7a8"
 
   user_data = <<-EOF
               #!/bin/bash
-              sudo yum -y install haproxy.x86_64
-              sudo yum -y install ansible.x86_64
-              sudo yum -y install docker.x86_64
+              sudo yum -y install haproxy.x86_64 ansible.x86_64 docker.x86_64
               EOF
 }
-
 resource "aws_security_group" "web" {
 
     name = "web"
@@ -62,4 +61,3 @@ resource "aws_security_group" "web" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
-
