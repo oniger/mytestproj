@@ -13,4 +13,4 @@ IPFIGLET12=$(for listv1 in `sudo docker ps | grep figlet12 | awk '{print $1}'`; 
 IPFIGLET13=$(for listv2 in `sudo docker ps | grep figlet13 | awk '{print $1}'`; do sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' $listv2; done)
 sudo sed -i "s/172.17.0.56/$IPFIGLET12/g" /etc/haproxy/haproxy.cfg
 sudo sed -i "s/172.17.0.57/$IPFIGLET13/g" /etc/haproxy/haproxy.cfg
-sudo service haproxy start
+sudo systemctl restart haproxy.service
