@@ -8,8 +8,17 @@ helloworld.war -- spring boot hello world
 
 jdk-8u181-linux-x64.tar.gz - Oracle JDK 8
 
-Under /root/myansi directory, run the command
+Under /root/myansi directory, run the terraform commands. Ensure the main.tf file is present.
 
-#ansible-playbook -i ./hosts -k playbook.yml
+This initializes terraform 
 
-where hosts file contains localhost or the hostname
+#terraform init
+
+This checks the terraform syntax for errors 
+
+#terraform plan
+
+This executes the template and spins up the host based on the template main.tf
+
+#terraform apply
+
