@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: localhost
   tasks:
    - name: install haproxy
      yum:
@@ -7,7 +7,7 @@
 
    - name: Copy HAProxy config
      template:
-      src=/home/testme/haproxy.cfg
+      src=/home/testme/templates/haproxy.cfg
       dest=/etc/haproxy/haproxy.cfg
       backup=yes
    
